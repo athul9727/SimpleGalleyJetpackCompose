@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.simplegallery.navigation.AppNavigation
 import com.example.simplegallery.ui.theme.SimpleGalleryTheme
 import java.util.Collections.list
 
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             myApp {
-                MainContent()
+                AppNavigation()
             }
         }
     }
@@ -38,66 +39,10 @@ class MainActivity : ComponentActivity() {
 fun myApp(content: @Composable () -> Unit){
 
     SimpleGalleryTheme {
-        Scaffold(topBar = {
-            TopAppBar(backgroundColor = Color.Magenta, elevation = 5.dp) {
-                Text(text = "Gallery")
-            }
-        }) {
-            content()
-        }
-
+        content() //AppNavigation as content
     }
 
 }
 
-@Preview
-@Composable
-fun MainContent(list:List<String> = listOf("qqqq","wwwww")){
-    androidx.compose.material.Surface(color = MaterialTheme.colors.background) {
-        Column(modifier = Modifier.padding(all = 12.dp)) {
-
-            LazyColumn {
-                items(items = list){
-                    MovieRow(item = it){
-
-                    }
-              }
-
-            }
-
-        }
-    }
-
-}
-
-@Composable
-fun MovieRow(item:String,onItemClicked:(String) -> Unit = {}){
-   Card(modifier = Modifier
-       .padding(4.dp)
-       .fillMaxWidth()
-       .height(130.dp)
-       .clickable {
-              onItemClicked.invoke(item)
-       },
-   shape = RoundedCornerShape(corner = CornerSize(16.dp)),
-       elevation = 5.dp
-   ) {
-
-       Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start)
-       {
-           
-           Surface(modifier = Modifier
-               .padding(12.dp)
-               .size(100.dp),
-               shape = RectangleShape,
-               elevation = 5.dp
-           ) {
-                    Icon(imageVector = Icons.Default.AccountBox, contentDescription = "image")
-           }
-           
-           Text(text = item)
-       }
 
 
-   }
-}
