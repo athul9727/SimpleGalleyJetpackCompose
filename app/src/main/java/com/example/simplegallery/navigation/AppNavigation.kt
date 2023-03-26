@@ -23,8 +23,8 @@ fun AppNavigation(){
              }
 
 
-            composable(AppScreens.DetailsScreen.name+"/{DATA}", arguments = listOf( navArgument(name="DATA") {type = NavType.StringType} )){ backStackEntry ->
-
+            composable(AppScreens.DetailsScreen.name+"/{DATA}", arguments = listOf( navArgument(name="DATA") {type = NavType.StringType} ))
+            { backStackEntry ->
                 DetailScreen(navController = navController,backStackEntry.arguments?.getString("DATA"))
             }
 

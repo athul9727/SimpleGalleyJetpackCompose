@@ -1,5 +1,7 @@
 package com.example.simplegallery.screens
 
+import android.os.Build
+import android.os.FileUtils
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,17 +23,28 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.simplegallery.models.DataModel
 import com.example.simplegallery.navigation.AppScreens
+import com.example.simplegallery.utils.FileUtil
+import com.example.simplegallery.utils.sizeInMb
+import com.example.simplegallery.utils.twoDecimals
 import com.example.simplegallery.widgets.DataRow
+import java.nio.file.FileSystems
+import java.nio.file.attribute.BasicFileAttributes
 
 @Composable
 fun HomeScreen(navController: NavController) {
     Scaffold(topBar = {
-        Row(horizontalArrangement = Arrangement.Start) {
-            Spacer(modifier = Modifier.width(20.dp))
-            Text(text = "Gallery")
+        TopAppBar(backgroundColor = Color.LightGray, elevation = 5.dp) {
+            Row(horizontalArrangement = Arrangement.Start) {
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = "Gallery")
+            }
+
         }
     }) {
-        MainContent(list = listOf(DataModel("1","qqqq","2022",""),DataModel("2","wwww","2023","")), navController= navController)
+
+
+
+        MainContent(list = FileUtil.getDataList(), navController= navController)
     }
 
 }
@@ -45,7 +58,7 @@ fun MainContent(list:List<DataModel>,navController: NavController){
             LazyColumn {
                 items(items = list){
                     DataRow(item = it){ data ->
-                        navController.navigate(AppScreens.DetailsScreen.name+"/$data")
+                        navController.navigate(AppScreens.DetailsScreen.name+"/${data.id}")
                     }
                 }
 

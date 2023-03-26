@@ -73,7 +73,7 @@ fun DataRow(item:DataModel,onItemClicked:(DataModel) -> Unit = {}){
                             .data(item.path)
                             .transformations(CircleCropTransformation())
                             .crossfade(true)
-                            .diskCacheKey("data_image_${item.id}${item.year}")
+                            .diskCacheKey("data_image_${item.id}${item.size}")
                             .networkCachePolicy(CachePolicy.ENABLED)
                             .diskCachePolicy(CachePolicy.DISABLED)
                             .memoryCachePolicy(CachePolicy.ENABLED)
@@ -100,7 +100,11 @@ fun DataRow(item:DataModel,onItemClicked:(DataModel) -> Unit = {}){
                                fontWeight = FontWeight.Bold
                                ))
                            {
-                                   append(item.year)
+
+
+
+                                   append(item.size)
+                                   append("\n")
                            }
 
                            withStyle(
@@ -149,7 +153,7 @@ fun HorizontalScrollImageView(imageList:List<DataModel>){
                               .data(it.path)
                               .transformations(CircleCropTransformation())
                               .crossfade(true)
-                              .diskCacheKey("data_image_${it.id}${it.year}")
+                              .diskCacheKey("data_image_${it.id}${it.size}")
                               .networkCachePolicy(CachePolicy.ENABLED)
                               .diskCachePolicy(CachePolicy.DISABLED)
                               .memoryCachePolicy(CachePolicy.ENABLED)

@@ -32,7 +32,7 @@ fun SimpleGalleryTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) {
+    val colors = if (false) {
         DarkColorPalette
     } else {
         LightColorPalette
