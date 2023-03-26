@@ -14,6 +14,8 @@ import androidx.navigation.NavController
 
 @Composable
 fun DetailScreen(navController: NavController,data:String?) {
+
+
     Scaffold(topBar = {
         TopAppBar(backgroundColor = Color.LightGray, elevation = 5.dp) {
             Row(horizontalArrangement = Arrangement.Start) {
